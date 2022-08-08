@@ -1,0 +1,156 @@
+
+  ?              - dump memory
+  ?C             - Show clock ticks since last clock reset
+  ?C-            - Show clock ticks since last clock reset and reset
+  ?P             - dump memory from PC
+  ?R             - Show RAM in current bank
+  ?Rn            - Show RAM in bank n
+  $              - disassemble memory
+  $P             - disassemble memory from PC
+  !addr bb bb .. - store bytes at address
+  !P bb bb  ..   - store bytes at PC
+  @              - run at PC
+  @addr          - set PC to addr then run
+  B?             - show break points
+  B+addr         - add break point
+  B-addr         - remove break point
+  BC             - clear all breakpoints
+  C+expr         - Add conditional breakpoint
+  C-num          - Remove specified conditional breakpoint
+  C?             - Show conditional breakpoints
+  C++            - Enable conditional breakpoints
+  C--            - Disable conditional breakpoints
+  CC             - Clear all conditional breakpoints
+  C=nn           - Set control port to nn
+  I              - Trigger interrupt with 00 as provided byte
+  Inn            - Trigger interrupt with nn as provided byte
+  INp=n          - Set input port p to n
+  P=nn           - Set data port to nn
+  Pmm=nn         - Set port mm to value nn. mm must be two hex characters
+  PC=addr        - set PC to addr
+  R              - Reset processor
+  Rn=n           - Set register n (0-6) to n
+  S=n            - Set sense input pin to 0 or 1
+  T?             - show instruction traps
+  T+bb           - add instruction trap
+  T-bb           - remove instruction trap
+  TC             - clear all traps
+  TR+            - turn on command tracing
+  TR-            - turn off command tracing
+  /              - exit
+
+ADDA,Rr addr    1000 11rr  ixxh hhhh  llll llll  Add absolute to register
+ADDI,Rr nn      1000 01rr  nnnn nnnn             Add immediate to register
+ADDR,Rr dd      1000 10rr  iddd dddd             Add relative to register
+ADDZ    Rr      1000 00rr                        Add register to register 0
+ANDA,Rr addr    0100 11rr  ixxh hhhh  llll llll  And absolute to register
+ANDI,Rr nn      0100 01rr  nnnn nnnn             And immediate to register
+ANDR,Rr dd      0100 10rr  iddd dddd             And relative to register
+ANDZ    Rr      0100 00rr                        And register to register 0
+BCFA,c  addr    1001 11cc  ihhh hhhh  llll llll  Branch condition false absolute
+BCFR,c  dd      1001 10cc  iddd dddd             Branch condition false relative
+BCTA,c  addr    0001 11cc  ihhh hhhh  llll llll  Branch condition true absolute
+BCTR,c  dd      0001 10cc  iddd dddd             Branch condition true relative
+BDRA,Rr addr    1111 11cc  ihhh hhhh  llll llll  Branch decrement register absolute
+BDRR,Rr dd      1111 10cc  iddd dddd             Branch decrement register relative
+BIRA,Rr addr    1101 11cc  ihhh hhhh  llll llll  Branch increment register absolute
+BIRR,Rr dd      1101 10cc  iddd dddd             Branch increment register relative
+BRNA,Rr addr    0101 11cc  ihhh hhhh  llll llll  Branch register not zero absolute
+BRNR,Rr dd      0101 10cc  iddd dddd             Branch register not zero relative
+BSFA,c  addr    1011 11cc  ihhh hhhh  llll llll  Branch subroutine condition false absolute
+BSFR,c  dd      1011 10cc  iddd dddd             Branch subroutine condition false relative
+BSNA,Rr addr    0111 11cc  ihhh hhhh  llll llll  Branch subroutine not zero absolute
+BSNR,Rr dd      0111 10cc  iddd dddd             Branch subroutine not zero relative
+BSTA,c  addr    0011 11cc  ihhh hhhh  llll llll  Branch subroutine condition true absolute
+BSTR,c  dd      0011 10cc  iddd dddd             Branch subroutine condition true relative
+BSXA    addr,X  1011 1111  ihhh hhhh  llll llll  Branch subroutine indexed absolute
+BXA     addr,X  1001 1111  ihhh hhhh  llll llll  Branch indexed absolute
+COMA,Rr addr    1110 11rr  ixxh hhhh  llll llll  Compare absolute to register
+COMI,Rr nn      1110 01rr  nnnn nnnn             Compare immediate to register
+COMR,Rr dd      1110 10rr  iddd dddd             Compare relative to register
+COMZ    Rr      1110 00rr                        Compare register to register 0
+CPSL    nn      0111 0101  nnnn nnnn             Clear PS lower
+CPSU    nn      0111 0100  nnnn nnnn             Clear PS upper
+DAR,Rr          1001 01rr                        Decimal adjust register
+EORA,Rr addr    0010 11rr  ixxh hhhh  llll llll  Exclusive or absolute to register
+EORI,Rr nn      0010 01rr  nnnn nnnn             Exclusive or immediate to register
+EORR,Rr dd      0010 10rr  iddd dddd             Exclusive or relative to register
+EORZ    Rr      0010 00rr                        Exclusive or register to register 0
+HALT            0100 0000                        Halt cpu
+IORA,Rr addr    0110 11rr  ixxh hhhh  llll llll  Inclusive or absolute to register
+IORI,Rr nn      0110 01rr  nnnn nnnn             Inclusive or immediate to register
+IORR,Rr dd      0110 10rr  iddd dddd             Inclusive or relative to register
+IORZ    Rr      0110 00rr                        Inclusive or register to register 0
+LODA,Rr addr    0000 11rr  ixxh hhhh  llll llll  Load register absolute
+LODI,Rr nn      0000 01rr  nnnn nnnn             Load register immediate
+LODR,Rr dd      0000 10rr  iddd dddd             Load register relative
+LODZ    Rr      0000 00rr                        Load register 0 from register
+LPSL            1001 0011                        Load PS lower from register 0
+LPSU            1001 0010                        Load PS upper from register 0
+NOP             1100 0000                        No operation
+PPSL    nn      0111 0111  nnnn nnnn             Preset PS lower
+PPSU    nn      0111 0110  nnnn nnnn             Preset PS upper
+REDC,Rr         0011 00rr                        Read control
+REDD,Rr         0111 00rr                        Read data
+REDE,Rr nn      0101 01rr  nnnn nnnn             Read extended data
+RETC,c          0001 01cc                        Return on conditional
+RETE,c          0011 01cc                        Return on conditional, Enable interrupts
+RRL,Rr          1101 00rr                        Rotate register left
+RRR,Rr          0101 00rr                        Rotate register right
+SPSL            0001 0011                        Store PS lower to register 0
+SPSU            0001 0010                        Store PS upper to register 0
+STRA,Rr addr    1100 11rr  ixxh hhhh  llll llll  Store register absolute
+STRI,Rr nn      1100 01rr  nnnn nnnn             Store register immediate
+STRR,Rr dd      1100 10rr  iddd dddd             Store register relative
+STRZ    Rr      1100 00rr                        Store register 0 to register
+SUBA,Rr addr    1010 11rr  ixxh hhhh  llll llll  Subtract absolute from register
+SUBI,Rr nn      1010 01rr  nnnn nnnn             Subtract immediate from register
+SUBR,Rr dd      1010 10rr  iddd dddd             Subtract relative from register
+SUBZ    Rr      1010 00rr                        Subtract register from register 0
+TMI,Rr  nn      1111 01rr                        Test mask immediate
+TPSL    nn      1011 0101  nnnn nnnn             Test PS lower immediate
+TPSU    nn      1011 0100  nnnn nnnn             Test PS upper immediate
+WRTC,Rr         1011 00rr                        Write control
+WRTD,Rr         1111 00rr                        Write data
+WRTE,Rr nn      1101 01rr  nnnn nnnn             Write extended data
+ZBRR    nn      1001 1011  nnnn nnnn             Zero page branch
+ZBSR    nn      1011 1011  nnnn nnnn             Zero page branch to subroutine
+ 
+i
+0  - Direct addressing
+1  - Indirect addressing
+
+rr
+00 - Register 0
+01 - Register 1
+10 - Register 2
+11 - Register 3
+
+xx
+00 - No index
+01 - Indexed with pre-increment
+10 - Indexed with pre-decrement
+11 - Indexed
+
+PSU
+0000 0000
+|||   \ /
+|||    +--- Stack pointer
+||+-------- Interrupt Inhibit
+|+--------- Flag
++---------- Sense
+
+PSL
+0000 0000
+|||| ||||
+|||| |||+-- Carry flag
+|||| ||+--- Logical(1)/Arithmetic(0) Compare
+|||| |+---- Overflow flag
+|||| +----- With(1)/Without(0) carry
+|||+------- Register bank select
+\|+-------- Interdigit carry
+ +--------- Condition code
+            0 0 - Zero
+            0 1 - Positive number
+            1 0 - Negative number
+

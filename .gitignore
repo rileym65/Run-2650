@@ -1,0 +1,5 @@
+run50
+*.build
+*.lst
+*.o
+
